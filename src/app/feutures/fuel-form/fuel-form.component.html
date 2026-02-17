@@ -4,8 +4,8 @@
       <div class="card-header">
         <h5 class="mb-0">Fuel Information</h5>
 
-        @if (fuelForm.errors && fuelForm.errors['startDateAfterEndDate']) {
-          <p class="error">Start date cannot be after end date.</p>
+        @if (fuelForm.errors) {
+          <p class="text-danger mt-3">Start date cannot be after end date.</p>
         }
       </div>
 

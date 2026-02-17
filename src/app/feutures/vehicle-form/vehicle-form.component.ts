@@ -1,14 +1,14 @@
-import { Component, inject, input, signal } from '@angular/core';
-import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Driver, IDriver } from '@Core/interfaces/driver';
+import { Driver } from '@Core/interfaces/driver';
 import { FuelTypeEnum } from '@Core/interfaces/fuel';
-import { IVehicle, Vehicle, VEHICLE_FORM_KEY, VehicleTypeEnum } from '@Core/interfaces/vehicle';
+import { Vehicle, VehicleTypeEnum } from '@Core/interfaces/vehicle';
 import { SessionStorageService } from '@Core/services/session-storage.service';
 import { VehicleService } from '@Core/services/vehicle.service';
 import { notEqualValidator } from '@Core/validators/common-validators';
 import { fuelTypeOptions, vehicleTypeOptions } from '@Utils/enum-func';
-import { filter, map, NotFoundError } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-form',

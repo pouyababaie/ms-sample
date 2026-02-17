@@ -35,19 +35,19 @@ export class FuelFormComponent {
       price: new FormControl<number | null>(null, [Validators.required, Validators.min(0.01)]),
       startDate: new FormControl<Date>(new Date(), {
         nonNullable: true,
-        validators: [notInPastValidator()],
+        validators: [Validators.required],
       }),
       type: new FormControl<number | null>(null, [Validators.required]),
       unit: new FormControl<number | null>(null, [Validators.required]),
     },
-    { validators: [dateRangeValidator('startDate', 'endDate')] },
+    { validators: [dateRangeValidator('startDate', 'endDate'), notInPastValidator('startDate')] },
   );
 
   constructor() {
     this.route.params
       .pipe(
+        filter((x) => !!x || x === 0),
         map((x) => Number(x['id'])),
-        filter((x) => !!x),
       )
       .subscribe((res) => {
         if (typeof res === 'number') {
@@ -88,9 +88,9 @@ export class FuelFormComponent {
           this.fuelService.updateFuel({ ...fuel, id: this.fuelId()! });
           break;
       }
-    }
 
-    this.cancel();
+      this.cancel();
+    }
   }
 
   cancel() {

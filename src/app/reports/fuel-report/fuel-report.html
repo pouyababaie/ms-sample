@@ -16,8 +16,8 @@
         <tr>
           <th scope="row">{{ item.id }}</th>
           <td>{{ FuelTypeLabelList[item.type] }}</td>
-          <td>{{ item.startDate | date: 'yyyy/mm/dd' }}</td>
-          <td>{{ item.endDate | date: 'yyyy/mm/dd' }}</td>
+          <td>{{ item.startDate | date: 'yyyy/MM/dd' }}</td>
+          <td>{{ item.endDate | date: 'yyyy/MM/dd' }}</td>
           <td>{{ item.price | currency: 'fa-IR' : '$' }}</td>
           <td>{{ FuelUnitLabelList[item.unit] }}</td>
           <td>
