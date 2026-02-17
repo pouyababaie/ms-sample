@@ -1,4 +1,39 @@
 <div class="container">
+  <div class="card">
+    <div class="card-header"><h5>Filters</h5></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="vehicleType">VehicleType</label>
+          <select
+            id="vehicleType"
+            class="form-control"
+            [ngModel]="selectedVehicle"
+            (ngModelChange)="onSelectedVehicleChange($event)"
+          >
+            <option [ngValue]="null">Select a Vehicle Type</option>
+            @for (item of vehicleList$ | async; track $index) {
+              <option [ngValue]="item.id">{{ item.name }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="fuelType">Fuel Type</label>
+          <select
+            id="fuelType"
+            class="form-control"
+            [ngModel]="selectedFuelType"
+            (ngModelChange)="onFuelTypeChange($event)"
+          >
+            <option [ngValue]="null">Select a Fuel Type</option>
+            @for (item of fuelList$ | async; track $index) {
+              <option [ngValue]="item.id">{{ FuelTypeLabelList[item.type] }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -12,7 +47,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (item of vehicleList$ | async; track $index) {
+      @for (item of filteredVehicleList$ | async; track item.id) {
         <tr>
           <th scope="row">{{ item.id }}</th>
           <td>{{ item.name }}</td>
@@ -24,8 +59,8 @@
           <td>{{ FuelTypeLabelList[item.fuelType] }}</td>
           <td>{{ item.initialFuel }}</td>
           <td>
-            <button class="btn btn-info me-2">Edit</button>
-            <button class="btn btn-outline-danger">Delete</button>
+            <button class="btn btn-info me-2 mb-2" (click)="edit(item.id)">Edit</button>
+            <button class="btn btn-outline-danger" (click)="deleteVehicle(item.id)">Delete</button>
           </td>
         </tr>
       }

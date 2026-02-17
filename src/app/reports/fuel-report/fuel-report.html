@@ -21,8 +21,8 @@
           <td>{{ item.price | currency: 'fa-IR' : '$' }}</td>
           <td>{{ FuelUnitLabelList[item.unit] }}</td>
           <td>
-            <button class="btn btn-info me-2">Edit</button>
-            <button class="btn btn-outline-danger">Delete</button>
+            <button class="btn btn-info me-2 mb-2" (click)="edit(item.id)">Edit</button>
+            <button class="btn btn-outline-danger" (click)="deleteFuel(item.id)">Delete</button>
           </td>
         </tr>
       }

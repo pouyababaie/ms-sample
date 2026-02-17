@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "vehicle": {
+      "id": 2,
+      "initialFuel": 0,
+      "name": "Toyota Corolla",
+      "driver": {
+        "firstName": "Sara",
+        "lastName": "Mohammadi",
+        "id": 102
+      },
+      "type": 0,
+      "fuelType": 1
+    },
+    "fuel": {
+      "id": 1,
+      "type": 1,
+      "startDate": "2026-02-01T00:00:00.000Z",
+      "endDate": "2026-02-15T23:59:59.000Z",
+      "price": 1.6,
+      "unit": 1
+    },
+    "fuelUsage": 120,
+    "calculatedFuelPrice": 1.44
+  },
+  {
+    "id": 2,
+    "vehicleId": {
+      "id": 2,
+      "initialFuel": 0,
+      "name": "Toyota Corolla",
+      "driver": {
+        "firstName": "Sara",
+        "lastName": "Mohammadi",
+        "id": 102
+      },
+      "type": 0,
+      "fuelType": 1
+    },
+    "fuel": {
+      "id": 1,
+      "type": 1,
+      "startDate": "2026-02-01T00:00:00.000Z",
+      "endDate": "2026-02-15T23:59:59.000Z",
+      "price": 1.6,
+      "unit": 1
+    },
+    "fuelUsage": 90,
+    "calculatedFuelPrice": 1.52
+  },
+  {
+    "id": 3,
+    "vehicleId": {
+      "id": 5,
+      "initialFuel": 0,
+      "name": "Scania R500",
+      "driver": {
+        "firstName": "Pouya",
+        "lastName": "Babaie",
+        "id": 105
+      },
+      "type": 1,
+      "fuelType": 0
+    },
+    "fuel": {
+      "id": 0,
+      "type": 0,
+      "startDate": "2026-01-01T00:00:00.000Z",
+      "endDate": "2026-01-31T23:59:59.000Z",
+      "price": 1.45,
+      "unit": 0
+    },
+    "fuelUsage": 150,
+    "calculatedFuelPrice": 1.5
+  }
+]

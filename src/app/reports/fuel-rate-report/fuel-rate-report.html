@@ -1,0 +1,29 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fuel Id</th>
+        <th scope="col">Vehicle Id</th>
+        <th scope="col">Fuel Usage</th>
+        <th scope="col">Calculated Fuel Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of fuelRateList$ | async; track $index) {
+        <tr>
+          <td scope="row">{{ item.id }}</td>
+          <td scope="row">{{ item.fuel.id }}</td>
+          <td scope="row">{{ item.vehicle.name }}</td>
+          <td scope="row">{{ item.fuelUsage }}</td>
+          <td scope="row">{{ item.calculatedFuelPrice | currency }}</td>
+          <td>
+            <button class="btn btn-info me-2 mb-2" (click)="edit(item.id)">Edit</button>
+            <button class="btn btn-outline-danger" (click)="deleteFuelRate(item.id)">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

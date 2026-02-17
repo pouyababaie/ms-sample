@@ -1,5 +1,6 @@
 import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FuelTypeLabels, FuelUnitLabels, IFuel } from '@Core/interfaces/fuel';
 import { FuelService } from '@Core/services/fuel.service';
 import { Observable } from 'rxjs';
@@ -12,7 +13,9 @@ import { Observable } from 'rxjs';
   styleUrl: './fuel-report.scss',
 })
 export class FuelReport implements OnInit {
-  private fuelService = inject(FuelService);
+  private readonly fuelService = inject(FuelService);
+
+  private readonly router = inject(Router);
 
   protected FuelTypeLabelList = FuelTypeLabels;
   protected FuelUnitLabelList = FuelUnitLabels;
@@ -20,12 +23,15 @@ export class FuelReport implements OnInit {
   fuelList$!: Observable<Array<IFuel>>;
 
   ngOnInit(): void {
-    this.fuelList$ = this.fuelService.getAllFuelList();
+    this.fuelList$ = this.fuelService.getFuelList();
   }
 
-  edit(fuel: IFuel) {
-    this.fuelService.updateFuel(fuel);
+  edit(fuelId: number) {
+    this.router.navigate(['/fuel-form', fuelId]);
+  }
 
-    this.fuelList$ = this.fuelService.getAllFuelList();
+  deleteFuel(fuelId: number) {
+    this.fuelService.deleteFuel(fuelId);
+    this.fuelList$ = this.fuelService.getFuelList();
   }
 }

@@ -1,37 +1,55 @@
 <form class="container mt-4" id="vehicleForm" (ngSubmit)="submit()" [formGroup]="vehicleForm">
   <div class="card shadow-sm">
     <div class="card-header">
-      <h5 class="mb-0">Vehicle Information</h5>
+      <h5 class="mb-0">
+        Vehicle Information |
+        @if (vehicleId() === undefined) {
+          Creating
+        } @else {
+          Updating Vehicle : {{ vehicleId() }}
+        }
+      </h5>
     </div>
 
     <div class="card-body">
-      <!-- Vehicle Name -->
-      <div class="mb-3">
-        <label for="name" class="form-label">Vehicle Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          name="name"
-          placeholder="Enter vehicle name"
-          required
-          formControlName="name"
-        />
-      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="initialFuel" class="form-label">Initial Fuel</label>
+          <input
+            type="number"
+            class="form-control"
+            id="initialFuel"
+            placeholder="Enter initialFuel"
+            formControlName="initialFuel"
+          />
+        </div>
+        <!-- Vehicle Name -->
+        <div class="mb-3 col-md-6">
+          <label for="name" class="form-label">Vehicle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Enter vehicle name"
+            required
+            formControlName="name"
+          />
+        </div>
 
-      <!-- Vehicle Type -->
-      <div class="mb-3">
-        <label for="type" class="form-label">Vehicle Type</label>
-        <select class="form-select" id="type" name="type" required formControlName="type">
-          <option [value]="null" selected disabled>Select type</option>
-          @for (item of vehicleTypeList; track $index) {
-            <option [ngValue]="item.value">{{ item.label }}</option>
-          }
-        </select>
-      </div>
+        <!-- Vehicle Type -->
+        <div class="mb-3 col-md-6">
+          <label for="type" class="form-label">Vehicle Type</label>
+          <select class="form-select" id="type" name="type" required formControlName="type">
+            <option [value]="null" selected disabled>Select type</option>
+            @for (item of vehicleTypeList; track $index) {
+              <option [ngValue]="item.value">{{ item.label }}</option>
+            }
+          </select>
+        </div>
 
-       <!-- Fuel Type -->
-        <div class="mb-3">
+        <!-- Fuel Type -->
+        <div class="mb-3 col-md-6">
           <label for="type" class="form-label">Fuel Type</label>
           <select class="form-select" id="type" formControlName="fuelType">
             <option [ngValue]="null" selected disabled>Select fuel type</option>
@@ -41,6 +59,7 @@
             }
           </select>
         </div>
+      </div>
 
       <hr />
 
@@ -76,8 +95,8 @@
     </div>
 
     <div class="card-footer text-start">
-        <button type="submit" class="btn btn-primary me-2">Save Vehicle</button>
-        <button type="reset" class="btn btn-outline-secondary" (click)="reset()">Reset</button>
+      <button type="submit" class="btn btn-primary me-2">Save Vehicle</button>
+      <button type="reset" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
     </div>
   </div>
 </form>

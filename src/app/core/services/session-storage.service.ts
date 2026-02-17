@@ -4,34 +4,46 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SessionStorageService {
-  setInSessionStorage(key: string, value: unknown) {
-    const hasValue = !!this.isJsonString(this.getFromSessionStorage(key));
-    let itemList = new Array();
+  setCollection<T>(key: string, value: T[]): void {
+    sessionStorage.setItem(key, JSON.stringify(value));
+  }
 
-    if (hasValue) {
-      const items = this.getFromSessionStorage(key) as Array<any>;
-      itemList = [...items, value];
+  getCollection<T>(key: string): T[] {
+    const item = sessionStorage.getItem(key);
+    if (!item) return [];
+
+    try {
+      return JSON.parse(item) as T[];
+    } catch {
+      return [];
     }
-
-    sessionStorage.setItem(key, JSON.stringify(itemList));
   }
 
-  getFromSessionStorage(key: string) {
-    return this.isJsonString(sessionStorage.getItem(key));
+  addToCollection<T>(key: string, value: T): void {
+    const current = this.getCollection<T>(key);
+    current.push(value);
+    this.setCollection(key, current);
   }
 
-  removeFromSessionStorage(key: string) {
+  updateInCollection<T extends { id: number }>(key: string, updated: T): void {
+    const current = this.getCollection<T>(key);
+
+    const index = current.findIndex((x) => x.id === updated.id);
+    if (index === -1) return;
+
+    current[index] = updated;
+
+    this.setCollection(key, current);
+  }
+
+  removeFromCollection<T extends { id: number }>(key: string, id: number): void {
+    const current = this.getCollection<T>(key);
+    const filtered = current.filter((x) => x.id !== id);
+
+    this.setCollection(key, filtered);
+  }
+
+  remove(key: string): void {
     sessionStorage.removeItem(key);
-  }
-
-  isJsonString(str: string | null) {
-    let obj = null;
-    if (str !== null)
-      try {
-        obj = JSON.parse(str);
-      } catch (e) {
-        return new Error('Object is Not a Valid Json');
-      }
-    return obj;
   }
 }

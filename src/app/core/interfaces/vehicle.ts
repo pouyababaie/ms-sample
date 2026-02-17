@@ -20,10 +20,10 @@ export const VehicleTypeLabels: Record<VehicleTypeEnum, string> = {
   [VehicleTypeEnum.Trailer]: 'Trailer',
 };
 
-export const VEHICLE_FORM_KEY = 'vehicle-form';
+export const VEHICLE_FORM_KEY = 'vehicle-key';
 
 export class Vehicle implements IVehicle {
-  id: number = Math.random() * 50;
+  id!: number;
   name: string = '';
   driver: IDriver = new Driver('', '');
   type: VehicleTypeEnum = VehicleTypeEnum.Sedan;
@@ -41,5 +41,6 @@ export class Vehicle implements IVehicle {
     this.type = type;
     this.fuelType = fuelType;
     this.initialFuel = initialFuel;
+    this.id = Math.floor(Math.random() * 10);
   }
 }

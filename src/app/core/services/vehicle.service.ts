@@ -9,15 +9,25 @@ import { Observable, of } from 'rxjs';
 export class VehicleService {
   private sessionService = inject(SessionStorageService);
 
-  getAllVehicleList(): Observable<Array<IVehicle>> {
-    const data = this.sessionService.getFromSessionStorage(VEHICLE_FORM_KEY);
-
+  getVehicleList(): Observable<Array<IVehicle>> {
+    const data = this.sessionService.getCollection<IVehicle>(VEHICLE_FORM_KEY) ?? [];
     return of(data);
   }
 
-  updateVehicle(vehicle: IVehicle) {
-    
+  getVehicleById(vehicleId: number): IVehicle {
+    const data = this.sessionService.getCollection<IVehicle>(VEHICLE_FORM_KEY) ?? [];
+    return data.filter((x) => x.id === vehicleId)[0];
   }
 
-  deleteVehicle(id: number) {}
+  createVehicle(vehicle: IVehicle) {
+    this.sessionService.addToCollection(VEHICLE_FORM_KEY, vehicle);
+  }
+
+  updateVehicle(vehicle: IVehicle) {
+    this.sessionService.updateInCollection(VEHICLE_FORM_KEY, vehicle);
+  }
+
+  deleteVehicle(id: number) {
+    this.sessionService.removeFromCollection(VEHICLE_FORM_KEY, id);
+  }
 }

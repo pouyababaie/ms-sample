@@ -1,14 +1,14 @@
-<div class="container">
+<form class="container"(ngSubmit)="submit()" [formGroup]="fuelRateForm">
   <!-- Date Range -->
   <div class="row">
     <div class="col-md-6 mb-3">
       <label for="startDate" class="form-label">Start Date</label>
-      <input type="date" class="form-control" id="startDate" />
+      <input type="date" class="form-control" id="startDate" formControlName="startDateFilter" />
     </div>
 
     <div class="col-md-6 mb-3">
       <label for="endDate" class="form-label">End Date</label>
-      <input type="date" class="form-control" id="endDate" />
+      <input type="date" class="form-control" id="endDate" formControlName="endDateFilter" />
     </div>
   </div>
   <div class="col-12">
@@ -21,31 +21,51 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="type" class="form-label">Fuel Type</label>
-            <select class="form-select" id="type" [(ngModel)]="selectedFuel">
+            <select class="form-select" id="type" formControlName="fuel">
               <option [ngValue]="null" selected disabled>Select fuel price</option>
 
-              @for (item of fuels$ | async; track $index) {
-                <option [ngValue]="item">{{ item.price }}</option>
+              @for (item of filteredFuelTypeList$ | async; track $index) {
+                <option [ngValue]="item">
+                  <span>Type: {{ FuelTypeLabelList[item.type] }} |</span>
+                  <span>Price: {{ item.price }} |</span>
+                  <span>Unit : {{ FuelUnitLabelList[item.unit] }}</span>
+                </option>
               }
             </select>
           </div>
 
           <div class="col-md-6 mb-3">
-            <label for="price" class="form-label">Price</label>
+            <label for="Vehicle" class="form-label">Vehicle</label>
+            <select class="form-select" id="Vehicle" formControlName="vehicle">
+              <option [ngValue]="null" selected disabled>Select Vehicle</option>
+
+              @for (item of filteredVehicleList$ | async; track $index) {
+                <option [ngValue]="item">
+                  <span>Name: {{ item.name }} |</span>
+                  <span>Type: {{ VehicleTypeLabelList[item.type] }} |</span>
+                  <span>Fuel Type : {{ FuelTypeLabelList[item.fuelType] }}</span>
+                </option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="fuelUsage" class="form-label">Fuel Usage</label>
             <input
               type="number"
               class="form-control"
-              id="price"
-              placeholder="Enter price"
-              [(ngModel)]="consumedFuel"
+              id="fuelUsage"
+              placeholder="Enter fuelUsage"
+              formControlName="fuelUsage"
             />
           </div>
         </div>
       </div>
 
-      <div class="card-footer text-start">
-        <h1>Final Payment Amount : {{ finalPaymentAmount() }}</h1>
-      </div>
+       <div class="card-footer text-start">
+      <button type="submit" class="btn btn-primary me-2">Save Vehicle</button>
+      <button type="reset" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    </div>
     </div>
   </div>
-</div>
+</form>
