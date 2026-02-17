@@ -1,0 +1,62 @@
+[
+  {
+    "id": 0,
+    "initialFuel": 0,
+    "name": "Volvo FH16",
+    "driver": {
+      "firstName": "Ali",
+      "lastName": "Rahimi",
+      "id": 101
+    },
+    "type": 1,
+    "fuelType": 0
+  },
+  {
+    "id": 2,
+    "initialFuel": 0,
+    "name": "Toyota Corolla",
+    "driver": {
+      "firstName": "Sara",
+      "lastName": "Mohammadi",
+      "id": 102
+    },
+    "type": 0,
+    "fuelType": 1
+  },
+  {
+    "id": 3,
+    "initialFuel": 0,
+    "name": "Mercedes Actros",
+    "driver": {
+      "firstName": "Reza",
+      "lastName": "Karimi",
+      "id": 103
+    },
+    "type": 1,
+    "fuelType": 0
+  },
+  {
+    "id": 4,
+    "initialFuel": 0,
+    "name": "Hyundai Elantra",
+    "driver": {
+      "firstName": "Neda",
+      "lastName": "Ahmadi",
+      "id": 104
+    },
+    "type": 0,
+    "fuelType": 1
+  },
+  {
+    "id": 5,
+    "initialFuel": 0,
+    "name": "Scania R500",
+    "driver": {
+      "firstName": "Pouya",
+      "lastName": "Babaie",
+      "id": 105
+    },
+    "type": 1,
+    "fuelType": 0
+  }
+]

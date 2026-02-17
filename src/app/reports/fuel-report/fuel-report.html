@@ -1,0 +1,31 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Type</th>
+        <th scope="col">StartDate</th>
+        <th scope="col">EndDate</th>
+        <th scope="col">Price</th>
+        <th scope="col">Unit</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of fuelList$ | async; track $index) {
+        <tr>
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ FuelTypeLabelList[item.type] }}</td>
+          <td>{{ item.startDate | date: 'yyyy/mm/dd' }}</td>
+          <td>{{ item.endDate | date: 'yyyy/mm/dd' }}</td>
+          <td>{{ item.price | currency: 'fa-IR' : '$' }}</td>
+          <td>{{ FuelUnitLabelList[item.unit] }}</td>
+          <td>
+            <button class="btn btn-info me-2">Edit</button>
+            <button class="btn btn-outline-danger">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

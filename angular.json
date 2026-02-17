@@ -29,9 +29,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss","public/css/custom.css"],
+            "scripts": ["public/js/custom.js"]
           },
           "configurations": {
             "production": {

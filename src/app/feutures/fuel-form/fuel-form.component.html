@@ -1,0 +1,65 @@
+<div class="container">
+  <form (ngSubmit)="submit()" [formGroup]="fuelForm">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h5 class="mb-0">Fuel Information</h5>
+      </div>
+
+      <div class="card-body">
+        <!-- Fuel Type -->
+        <div class="mb-3">
+          <label for="type" class="form-label">Fuel Type</label>
+          <select class="form-select" id="type" formControlName="type">
+            <option [ngValue]="null" selected disabled>Select fuel type</option>
+
+            @for (item of fuelTypes; track item.value) {
+              <option [ngValue]="item.value">{{ item.label }}</option>
+            }
+          </select>
+        </div>
+
+        <!-- Date Range -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" formControlName="startDate" />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate" formControlName="endDate" />
+          </div>
+        </div>
+
+        <!-- Price + Unit -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              placeholder="Enter price"
+              formControlName="price"
+            />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="unit" class="form-label">Unit</label>
+            <select class="form-select" id="unit" name="unit" formControlName="unit">
+              <option [ngValue]="null" selected disabled>Select unit</option>
+              @for (item of fuelPriceUnits; track $index) {
+                <option [ngValue]="item.value">{{item.label}}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer text-start">
+        <button type="submit" class="btn btn-primary me-2">Save Fuel</button>
+        <button type="reset" class="btn btn-outline-secondary" (click)="reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
